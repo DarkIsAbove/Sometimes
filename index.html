@@ -146,6 +146,8 @@
             font-weight: 700;
             z-index: 2;
             text-shadow: 0 0 10px gray , 0 0 20px gray ;
+            opacity: 0;
+            transition: 1s;
         }
 
         .title p{
@@ -179,7 +181,6 @@
             transition: 1s;
             color: white;
             font-size: 13rem;
-            display: none;
         }
 
         #loader p{   
@@ -199,10 +200,7 @@
         footer {
             padding: 10rem 5rem 1rem 5rem;
             color: white;
-        }
-
-        footer ul {
-
+            z-index: 999;
         }
 
         footer ul li {
@@ -386,8 +384,8 @@
         <p>Sometimes</p>
     </div>
     <script type="text/javascript">
-       /*  document.body.style.overflow = "hidden"; */
-       window.scrollTo(0,0);
+    /*     document.body.style.overflow = "hidden" */;
+        window.scroll(0,0);
 
         const section_container = document.querySelector(".section-container");
         const mouse_indicator = document.getElementById("mouse-indicator");
@@ -407,19 +405,19 @@
             mouse_indicator.style.cssText = `left : ${x}px;top : ${y}px`;
         }); 
 
-      /*   let dots= "";
+        let dots= "";
         let waitId = setInterval(function() {
             dots += ".";
             if (dots.length > 3) dots = ""; 
             document.querySelector("#loader p").innerHTML = `Sometimes${dots}`;
         },600);
 
-     */
+    
 
         function init() {
             setTimeout(function() {
                 removeLoader();
-               /*  clearInterval(waitId); */
+                clearInterval(waitId);
             },3000);
         }
 
@@ -432,6 +430,11 @@
             setTimeout(function() {
                 loader.style.opacity = 0;
                 document.body.style.overflow = "auto";
+
+                setTimeout(function() {
+                    loader.style.display = "none";
+                    document.querySelector(".title").style.opacity = 1;
+                },1000);
             },1000);
         }
     </script>
