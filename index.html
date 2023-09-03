@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sometimes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style> 
+       @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,500;0,700;1,700&display=swap');
+
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Ubuntu', sans-serif;
+            background: black;
+        }
+
+        div.section-container {
+            height: 450vh;
+        }
+
+        section {
+            position: absolute;
+            width: 100%;
+        }
+
+        section:nth-of-type(1){ 
+            z-index: 1;
+            width: 100%;
+        }
+
+        section:nth-of-type(1) div.image-container img {
+            filter: grayscale(120%) brightness(96%) invert(10%);
+        }
+
+        section:nth-of-type(2) {
+            height: 300vh;
+            z-index: 0;
+        }
+        
+        section:nth-of-type(3) {
+            height: 450vh;
+            z-index: -1;
+        }
+
+        section:nth-of-type(3)  .hero-text{
+            top: 15%;
+            left: 0;
+        }
+
+        div.image-container {
+            width: 100%;
+            position: sticky;
+            top: 0  ;
+        }
+
+        div.image-container img , .womans img {
+            filter: grayscale(85%);
+        }
+
+        #mouse-indicator {
+            position: absolute;
+            width: 7rem;
+            height: 7rem;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: invert(100%) sepia(100%) grayscale(60%) brightness(100%);
+            transition: .3s linear;
+            border-radius: 50%;
+            z-index: 4;
+        }
+
+        .hero-text {
+            position: sticky;
+            top: 30%;
+            bottom: 20%;
+            color: white;
+            left: 70%;
+            width: 40vw;
+            font-size: 1.6rem;
+            text-shadow: 0 0 40px black;
+            background: rgba(0,0,0,0.18);
+            backdrop-filter: blur(5px) brightness(105%);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 0;
+            letter-spacing: 0.12rem;
+            word-spacing: 0.4rem;
+            line-height: 2.2rem;
+            font-weight: 500;
+        }
+
+        .hero-text h1 {
+            margin: 3rem 0;
+            font-size: 5rem;
+        }
+
+        .hero-text strong {
+            color: black;
+            font-weight: 700;
+            font-style: italic;
+            text-transform: uppercase   ;
+            text-shadow: 0 0 10px gray;
+            font-size: 2.1rem;
+        }
+
+        .hamburger {
+            position: fixed;
+            top: 0;
+            z-index: 2;
+            left: 2%;
+            z-index: 6;
+            cursor: pointer;
+        }
+
+        .hamburger a {
+            display: inline-block;
+        }
+
+        .hamburger a div{
+            width: 4rem;
+            height: 0.2rem;
+            box-shadow: 0 0 10px gray, 0 0 20px gray;
+            background: white;
+            margin: 1rem 0;
+            border-radius: 20px;
+        }
+        
+        .hamburger a div:nth-of-type(2){
+            width: calc(4rem - 1rem);
+        }
+
+        .hamburger a div:nth-of-type(3){
+            width: calc(4rem - 2rem);
+        }
+            
+        .title {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4.5rem;
+            margin-top: 1rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1.05rem;
+            font-weight: 700;
+            z-index: 2;
+            text-shadow: 0 0 10px gray , 0 0 20px gray ;
+        }
+
+        .title p{
+            margin: -0.1em 0;
+        }
+        
+        .womans {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 5;
+        }
+
+        .womans-text {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size:13rem; 
+            top: 45%;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 0 0 10px gray;
+        }
+
+        #loader {
+            position: fixed;
+            top: 0;
+            z-index: 9;
+            width: 100%;
+            height: 100%;
+            transition: 1s;
+            color: white;
+            font-size: 13rem;
+            display: none;
+        }
+
+        #loader p{   
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            top: 32%;
+        }
+
+        #loader .shadow {
+            background: black;
+            width: 100%;
+            height: 100%;
+            transition: 1s;
+        }
+
+        footer {
+            padding: 10rem 5rem 1rem 5rem;
+            color: white;
+        }
+
+        footer ul {
+
+        }
+
+        footer ul li {
+            margin: 1.6rem 0;
+            font-size: 1.2rem;
+            letter-spacing: .2rem;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: noe;
+            color: white;
+        }
+
+        footer .links {
+            display: flex;
+            gap: 5rem;
+        }
+
+        footer .copyrights {
+            display: flex;
+            justify-content: center;
+            font-size: 2rem;
+            align-items: center;
+            letter-spacing: 1rem;
+            margin-top: 8rem;
+            border-top: 2px solid white ;
+            padding-top: 1rem;
+        }
+
+        footer p {
+            margin-top: 1rem;
+        }
+
+        footer .copyrights > div > div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        footer .copyrights a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="hamburger">
+        <a href="facebook.com">
+            <div></div>
+            <div></div>
+            <div></div>
+        </a>
+    </div>
+    <div class="title">
+        <p>Sometimes</p>
+    </div>
+    <div class="section-container">
+        <section>
+            <div class="womans-text">
+                Sometimes...
+            </div>
+            <div class="image-container">
+                <img src="./womans-after-period-no-woman.png" width="100%"/>
+            </div>
+        </section>
+        <section>
+            <div class="image-container">
+                <img src="./dog_grass.jpg" width="100%"/>
+            </div>
+            <div class="hero-text">
+                <p>Some times...</p>
+                <h1>You are Gay!    </h1>
+                <p>
+                    If you read this you might be gay,gayness cause severe mental problems and its symptoms are
+                    being <strong>STUPID</strong> , <strong>ADHD</strong> , and being a <strong>Dog Lover</strong>.
+                </p>
+                <p>
+                    What's the difference between a joke and a fat cock?
+                    You don't look like you can take a joke.
+                </p>
+            </div>
+        </section>
+        <section>
+            <div class="image-container">
+                <img src="./tree_grass2.jpg" onload="init()" width="100%"/>
+            </div>
+            <div class="hero-text">
+                <p>Some times...</p>
+                <h1>My Ball Hurts </h1>
+                <p>
+                    Ouch...It's painful when I see you do something stupid on the Internet.
+                    My body <strong>shake</strong> , <strong>sends shiver down my spine </strong> , and <strong>reduced my brain cells by 
+                    a million times</strong>
+                </p>
+                <p>
+                    Why did the man start confused after learning an IQ below 70 qualifies you for an intellectual disability?
+                    <br/>
+                    Because he was trying to figure out if IQ was measured in Celsius or Fahrenheit!
+                </p>    
+            </div>
+        </section>
+    </div>
+    <footer>
+        <div class="links">
+            <ul>
+                <li>
+                    <a href="#">WHY</a>
+                </li>
+                <li>
+                    <a href="#">ARE</a>
+                </li>
+                <li>
+                    <a href="#">YOU</a>
+                </li>
+                <li>
+                    <a href="#">GAE?</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#">WHY</a>
+                </li>
+                <li>
+                    <a href="#">ARE</a>
+                </li>
+                <li>
+                    <a href="#">YOU</a>
+                </li>
+                <li>
+                    <a href="#">STUPID!</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#">CONTACT A PSYCHIATRIST</a>
+                </li>
+                <li>
+                    <a href="#">CALL FOR HELP</a>
+                </li>
+                <li>
+                    <a href="#">KILL YOURSELF</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#">NO ONE</a>
+                </li>
+                <li>
+                    <a href="#">FUCKING CARES!</a>
+                </li>
+                <li>
+                    <a href="#">ABOUT YOU</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="copyrights">
+            <div>   
+                <div>
+                    <a href="#">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa-brands fa-reddit"></i>
+                    </a>    
+                </div>
+                <p>SOMETIMES&copy;2023</p>
+            </div>
+        </div>
+    </footer>
+    <div id="mouse-indicator"></div>
+    <div class="womans">
+        <img src="womans-after-period-womans.png" width="100%" />
+    </div>
+    <div id="loader">
+        <div class="shadow" ></div>
+        <p>Sometimes</p>
+    </div>
+    <script type="text/javascript">
+       /*  document.body.style.overflow = "hidden"; */
+       window.scrollTo(0,0);
+
+        const section_container = document.querySelector(".section-container");
+        const mouse_indicator = document.getElementById("mouse-indicator");
+
+        let mouse_position = {
+            x : 0,
+            y : 0
+        }
+
+        let allowed_move = true;
+
+        window.addEventListener("mousemove",function(event) {
+            const mouseI_box = mouse_indicator.getBoundingClientRect();
+            let x = event.pageX - mouseI_box.width / 2;
+            let y = event.pageY - mouseI_box.height / 2;
+            mouse_position = {x,y};
+            mouse_indicator.style.cssText = `left : ${x}px;top : ${y}px`;
+        }); 
+
+      /*   let dots= "";
+        let waitId = setInterval(function() {
+            dots += ".";
+            if (dots.length > 3) dots = ""; 
+            document.querySelector("#loader p").innerHTML = `Sometimes${dots}`;
+        },600);
+
+     */
+
+        function init() {
+            setTimeout(function() {
+                removeLoader();
+               /*  clearInterval(waitId); */
+            },3000);
+        }
+
+        function removeLoader() {
+            const loader_shadow = document.querySelector("#loader .shadow");
+            loader_shadow.style.opacity = 0;
+            const loader = document.querySelector("#loader");
+            loader.style.zIndex = 4;
+            
+            setTimeout(function() {
+                loader.style.opacity = 0;
+                document.body.style.overflow = "auto";
+            },1000);
+        }
+    </script>
+</body>
+</html>
